@@ -18,8 +18,41 @@ function reload() {
         const row = document.createElement('tr')
         for (let j = 0; j < columns; j++) {
             const n = i * columns + j
+            const as = document.querySelector('#as option:checked').value
+            let color = ''
+            let chunk, r, g, b;
+            switch (as) {
+                case 'hex':
+                    color = `#${pi.substring(n*6, n*6+6)}`
+                    break
+                case 'p1d':
+                    chunk = pi.substring(n*3, n*3+3)
+                    r = parseInt(chunk[0]) * 255.0 / 10.0
+                    g = parseInt(chunk[1]) * 255.0 / 10.0
+                    b = parseInt(chunk[2]) * 255.0 / 10.0
+                    color = `rgb(${r}, ${g}, ${b})`
+                    break
+                case 'p2d':
+                    chunk = pi.substring(n * 6, n * 6 + 6);
+                    r = parseInt(chunk.substring(0, 2)) * 255.0 / 100.0
+                    g = parseInt(chunk.substring(2, 4)) * 255.0 / 100.0
+                    b = parseInt(chunk.substring(4, 6)) * 255.0 / 100.0
+                    color = `rgb(${r}, ${g}, ${b})`
+                    break
+                case 'p3d':
+                    chunk = pi.substring(n * 9, n * 9 + 9);
+                    r = parseInt(chunk.substring(0, 3)) * 255.0 / 1000.0
+                    g = parseInt(chunk.substring(3, 6)) * 255.0 / 1000.0
+                    b = parseInt(chunk.substring(6, 9)) * 255.0 / 1000.0
+                    color = `rgb(${r}, ${g}, ${b})`
+                    break
+                default:
+                    console.error("no!")
+            }
             const cell = document.createElement('td')
-            cell.setAttribute('style', `width: 100px; height: 100px; background-color: #${pi.substring(n*6, n*6+6)}`)
+            cell.style.width = '100px'
+            cell.style.height = '100px'
+            cell.style.backgroundColor = color
             /*cell.style.width = '100px'
             cell.style.height = '100px'
             cell.style.backgroundColor = `#${pi.substring(n*6, n*6+6)}`*/

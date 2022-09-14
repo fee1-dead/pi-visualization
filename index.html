@@ -8,6 +8,15 @@
   </head>
   <body>
     <h1>Visualized Pi</h1>
+    <label for="as">Display colors from digits of pi as: </label>
+    <select id="as" onchange="reload()">
+      <option value="hex">Hex code (#314159 #265753 and so on)</option>
+      <option value="p1d">Percentage 1 digit (30% R, 10% G, 40% B, 10% R, 40% G, 10% B, so on)</option>
+      <option value="p2d">Percentage 2 digits (31% R, 41% G, 59% B, 26% R, 53% G, 58% B, so on)</option>
+      <option value="p3d">Percentage 3 digits (RGB 31.4% 15.9% 26.5%, RGB 35.8% 97.9% 32.3%, so on)</option>
+    </select>
+    <br/>
+
     <label for="rows">Rows</label>
     <input type="number" id="rows" value="5">
     <label for="columns">Columns</label>
